@@ -13,7 +13,12 @@
     "db:migrate": "yarn knex migrate:latest",
     "db:migrate:make": "yarn knex migrate:make",
     "db:rollback": "yarn knex migrate:rollback",
-    "db:seed": "babel-node ./node_modules/.bin/knex seed:run"
+    "db:seed": "babel-node ./node_modules/.bin/knex seed:run",
+    "build:client": "rm -rf public/dist && NODE_ENV=production webpack",
+    "build:server": "rm -rf lib/ && cp -R src/ lib/ && NODE_ENV=production babel -d lib src",
+    "build": "yarn build:client && yarn build:server",
+    "heroku-postbuild": "yarn build && yarn db:migrate",
+    "start": "NODE_ENV=production node lib/server/app.js"
   },
   "devDependencies": {
     "@babel/node": "^7.7.0",
