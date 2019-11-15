@@ -28,6 +28,7 @@ app.use(react)
 
 app.listen(config.get('server.port'), () => {
   connectDatabase()
+  console.log(config.get('server.assets'))
   console.log(
     `🔥 server is listening on port http://localhost:${config.get(
       'server.port',

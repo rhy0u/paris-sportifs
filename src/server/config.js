@@ -1,4 +1,8 @@
 import convict from 'convict'
+import path from 'path'
+import { getAssets } from 'server/utils/webpack'
+
+const DEFAULT_PUBLIC_PATH = path.join(__dirname, '../../public')
 
 const config = convict({
   env: {
@@ -25,9 +29,24 @@ const config = convict({
         },
       },
     },
+    publicPath: {
+      doc: 'The public path',
+      format: String,
+      default: DEFAULT_PUBLIC_PATH,
+    },
   },
 })
 
+const env = config.get('env')
+config.loadFile(path.join(__dirname, `../../config/${env}.json`))
+
 config.validate()
+
+if (config.get('server.assets.webpackAssets')) {
+  config.set(
+    'server.assets',
+    getAssets({ publicPath: config.get('server.publicPath') }),
+  )
+}
 
 export default config
