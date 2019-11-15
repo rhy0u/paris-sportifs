@@ -17,7 +17,7 @@ class League extends BaseModel {
       modelClass: 'Team',
       join: {
         from: 'leagues.id',
-        to: 'teams.teamId',
+        to: 'teams.leagueId',
       },
     },
   }

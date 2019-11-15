@@ -10,7 +10,7 @@ export const generate = async ({ teams }) => {
           'https://www.thesportsdb.com/images/media/player/thumb/fnk3u51520755737.jpg',
         signin: { amount: 63750000, currency: 'eur' },
         born: { date: new Date(614223439198) },
-        team: teams.englishPremierLeague,
+        team: teams.arsenal,
       },
       {
         name: 'Mesut Ozil',
@@ -19,7 +19,7 @@ export const generate = async ({ teams }) => {
           'https://www.thesportsdb.com/images/media/player/thumb/g0xlkp1510859385.jpg',
         signin: { amount: 42500000, currency: 'gpp' },
         born: { date: new Date(592983259198) },
-        team: teams.englishPremierLeague,
+        team: teams.arsenal,
       },
       {
         name: 'Olivier Giroud',
@@ -28,7 +28,7 @@ export const generate = async ({ teams }) => {
           'https://www.thesportsdb.com/images/media/player/cutout/pe0azg1557049473.png',
         signin: { amount: 18000000, currency: 'gpp' },
         born: { date: new Date(528526159198) },
-        team: teams.englishPremierLeague,
+        team: teams.chelsea,
       },
     ],
     { relate: true },
