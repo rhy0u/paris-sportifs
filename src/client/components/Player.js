@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import moment from 'moment'
 
 const PlayerWrapper = styled.div`
-  background-color: #f7f8fb;
+  background-color: #eff0f1;
   display: flex;
   height: 100px;
   padding: 16px 8px;

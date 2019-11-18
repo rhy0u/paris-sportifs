@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select'
 import axios from 'axios'
-import Team from 'client/components/Team'
 import { Box } from '@smooth-ui/core-sc'
+import NavBar from 'client/components/NavBar'
+import Team from 'client/components/Team'
 
 const getLeagues = async () => {
   const { data } = await axios.get('/leagues')
@@ -26,25 +27,34 @@ const Home = () => {
 
   useEffect(() => {
     if (value) getTeams(value.value).then(setTeams)
+    else setTeams([])
   }, [value])
 
   return (
-    <div>
-      <Box p={2}>
-        <Select
-          value={value}
-          isClearable
-          onChange={setValue}
-          placeholder="Search by league"
-          options={leagues?.map(league => ({
-            label: league.name,
-            value: league.id,
-          }))}
-          isLoading={!leagues}
-        />
-      </Box>
+    <Box>
+      <NavBar>
+        <Box width={1} display="flex" justifyContent="center">
+          <Select
+            value={value}
+            isClearable
+            onChange={setValue}
+            placeholder="Search by league"
+            styles={{
+              container: provided => ({
+                ...provided,
+                width: '300px',
+              }),
+            }}
+            options={leagues?.map(league => ({
+              label: league.name,
+              value: league.id,
+            }))}
+            isLoading={!leagues}
+          />
+        </Box>
+      </NavBar>
 
-      <Box row>
+      <Box row pt={56}>
         {teams?.map(team => (
           <Box
             col={{ xs: 1 / 2, md: 1 / 4 }}
@@ -56,7 +66,7 @@ const Home = () => {
           </Box>
         ))}
       </Box>
-    </div>
+    </Box>
   )
 }
 
